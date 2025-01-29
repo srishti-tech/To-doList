@@ -1,11 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
     const taskTitle = document.getElementById("task-title");
     const taskDesc = document.getElementById("task-desc");
+    const taskDate = document.getElementById("task-date");
     const addTaskBtn = document.getElementById("add-task");
     const taskList = document.getElementById("task-list");
     const darkModeToggle = document.getElementById("dark-mode-toggle");
     const filterBtns = document.querySelectorAll(".filter-btn");
-  
+
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     let isDarkMode = localStorage.getItem("darkMode") === "true";
   
@@ -21,8 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
           li.className = task.completed ? "completed" : "";
           li.innerHTML = `
             <span>
-              <strong>${task.title}</strong><br>
+              <strong>${task.title}</strong> (${task.date || "No due date"})
+              <br>
               <small>${task.description}</small>
+
             </span>
             <div>
               <button onclick="toggleComplete(${index})"><i class="fas fa-check"></i></button>
@@ -33,16 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
           taskList.appendChild(li);
         });
     };
-  
+ 
     const addTask = () => {
       const title = taskTitle.value.trim();
       const description = taskDesc.value.trim();
+      const date = taskDate.value;
       if (!title) return alert("Task title is required!");
-      tasks.push({ title, description, completed: false });
+      tasks.push({ title, description, date, completed: false });
       saveTasks();
       renderTasks();
       taskTitle.value = "";
       taskDesc.value = "";
+      taskDate.value="";
     };
   
     window.toggleComplete = index => {
@@ -50,12 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
       saveTasks();
       renderTasks();
     };
-  
+     //edit
     window.editTask = index => {
       const task = tasks[index];
       taskTitle.value = task.title;
       taskDesc.value = task.description;
-      tasks.splice(index, 1); // Temporarily remove task for re-addition after edit
+      taskDate.value=task.date;
+      tasks.splice(index, 1); 
       renderTasks();
     };
   
