@@ -28,3 +28,4 @@ A simple and interactive To-Do List App built with HTML, CSS, and JavaScript, fe
 
 ## 🌟 Future Improvements
 * Implement drag-and-drop task reordering.
+* Add progress bar.
