@@ -54,7 +54,7 @@ body {
   }
   
   #task-title,
-  #task-desc {
+  #task-desc,#task-date {
     font-family: 'Roboto', sans-serif;
     padding: 10px;
     margin-bottom: 4px;
@@ -65,10 +65,23 @@ body {
   }
   
   #task-title:focus,
-  #task-desc:focus {
+  #task-desc:focus,#task-date:focus {
     outline: none;
     border-color: #007bff;
   }
+
+  /* Progress Bar 
+.progress-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+}
+*/
   
   #add-task {
     width: 100%;
@@ -212,3 +225,60 @@ body {
     transform: translateX(26px);
   }
   
+
+
+  
+  /* Responsive Design */
+@media (max-width: 768px) {
+
+  .filter {display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .filter-btn {
+    
+    margin: 5px;
+  }
+
+  .toggle-switch {
+    display: inline;
+    margin-bottom: 20px;
+  }
+  .container {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  #task-title, #task-desc, #add-task , #task-date {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
